@@ -23,8 +23,6 @@
         <label for="description" class="required">Descrição: </label>   
         <textarea type="text" name="description" id="description" class="form-control" rows="6" required value="{{ old('description',$course->description) }}">{{ old('description',$course->description) }}</textarea>
     </div>
-    {{ $errors }}
-
 </div>
 
 @push('scripts')

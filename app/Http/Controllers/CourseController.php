@@ -7,7 +7,7 @@ use App\Category;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreCourseRequest;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\File; 
+use Illuminate\Support\Str;
 
 
 class CourseController extends Controller
@@ -62,7 +62,12 @@ class CourseController extends Controller
      */
     public function show(Course $course)
     {
-        //
+        $video_link = $course->video;
+        if(Str::contains($course->video, ['https://www.youtube.com/watch?v='])){
+            $video_link = Str::replaceArray('watch?v=', ['embed/'], $course->video);
+        }
+        $categories = Category::all();
+        return view('admin.courses.show', compact('course','categories' ,'video_link'));
     }
 
     /**
@@ -96,8 +101,7 @@ class CourseController extends Controller
      */
     public function destroy(Course $course)
     {
-
-        File::delete($course->image_link);
+        Storage::delete('public/' . $course->image_link);
         $course->delete();
         return redirect()->route('courses.index')->with('success', true);
     }

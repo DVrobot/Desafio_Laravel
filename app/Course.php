@@ -11,7 +11,7 @@ class Course extends Model
         'description',
         'slug',
         'image_link',
-        'video_link',
+        'video',
         'category_id',
     ];
 
