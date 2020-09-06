@@ -15,10 +15,12 @@ class UserSeeder extends Seeder
         User::updateOrCreate([
             'email' => 'admin@admin.com.br',
             'password' => bcrypt('123456'),
+            'is_admin' => true,
         ],[
             'name' => 'Admin',
             'email' => 'admin@admin.com.br',
             'password' => bcrypt('123456'),
+            'is_admin' => true,
         ]);
     }
 }
