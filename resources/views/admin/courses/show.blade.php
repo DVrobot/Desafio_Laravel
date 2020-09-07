@@ -3,17 +3,22 @@
     @component('admin.components.show')
         @slot('title', $course->name)
         @slot('form')
-            <div class=" float-left col-4 d-inline-block align-top">
-                <img class="img-fluid border" src="{{ asset('storage/' . $course->image_link ) }}" >
+            <div class=" float-left col-4 d-inline-block align-top">                
+                <img class="img-fluid border"  src="{{ asset('storage/img/' . $course->image_link ) }}" >
             </div>
-            <h4>Informações:</h4>
             <ul class="list-group-flush float-right col-8 d-inline-block align-top">
+                <li class="list-group-item">
+                    <b> Status: </b>
+                    @if( Auth::user()->containsCourse($course) )
+                        <span class="text-success"> Inscrito </span>
+                    @else 
+                        <span class="text-danger"> Desinscrito </span>
+                    @endif
+                </li>
                 <li class="list-group-item"><b>Categoria: </b>{{ $course->category->name }}</li>
-                <li class="list-group-item"><b>Descrição: </b><textarea class="summertext" type="text" rows="6">{{ $course->description }}</textarea></li>
+                <li class="list-group-item"><textarea class="summertext" type="text"    >{{ $course->description }}</textarea></li>
             </ul>
-            
-            {{ $video_link }}
-            <div class="embed-responsive embed-responsive-16by9  mt-3">
+            <div class="embed-responsive embed-responsive-16by9  my-3">
                 <iframe class="col-12" src=" {{ $video_link }}" allowfullscreen></iframe>
             </div>
 
