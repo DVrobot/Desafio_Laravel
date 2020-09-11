@@ -88,8 +88,8 @@ class CourseController extends Controller
      */
     public function update(UpdateCourseRequest $request, Course $course)
     {
-        Storage::delete('public/' . $course->image_link);
-        Course::create($this->makeImage($request));
+        Storage::delete('/public/img/' . $course->image_link);
+        $course->update($this->makeImage($request));
         return redirect()->route('courses.index')->with('success', true);
     }
 
@@ -101,7 +101,7 @@ class CourseController extends Controller
      */
     public function destroy(Course $course)
     {
-        Storage::delete('public/' . $course->image_link);
+        Storage::delete('/public/img/' . $course->image_link);
         $course->delete();
         return redirect()->route('courses.index')->with('success', true);
     }
