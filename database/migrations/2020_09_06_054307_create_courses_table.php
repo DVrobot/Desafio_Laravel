@@ -18,7 +18,7 @@ class CreateCoursesTable extends Migration
             $table->string('name')->unique();
             $table->text('description');
             $table->string('slug');
-            $table->string('image_link')->default('course.jpg');
+            $table->string('image_link')->default('course.jpg')->nullable();
             $table->string('video')->default('https://www.youtube.com/watch?v=_z9nzEUgro4');
             $table->timestamps();
 

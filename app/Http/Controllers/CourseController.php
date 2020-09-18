@@ -130,10 +130,16 @@ class CourseController extends Controller
     public function makeImage(Request $request)
     {
         $data = $request->all();
-        $extesion = $request->image_link->getClientOriginalExtension();
-        $data['slug'] = str_slug($request->name);
-        $data['image_link'] = "{$data['slug']}.{$extesion}";
-        $request->image_link->storeAs('public/img', $data['image_link']);
+        if($request->hasFile('image_link'))
+        {
+            $extesion = $request->image_link->getClientOriginalExtension();
+            $data['slug'] = str_slug($request->name);
+            $data['image_link'] = "{$data['slug']}.{$extesion}";
+            $request->image_link->storeAs('public/img', $data['image_link']);
+        }
+        else{
+            unset($data['image_link']);
+        }
         return $data;
     }
 }

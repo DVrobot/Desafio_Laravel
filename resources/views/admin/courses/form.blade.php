@@ -5,7 +5,7 @@
     </div>
     <div class="form-group col-6">
         <label for="video" class="required">Link do video </label>
-        <input type="video" name="video" id="video" autocomplete="off" required class="form-control" value="{{ old('video', $course->video )}}">
+        <input type="url" name="video" id="video" autocomplete="off" required class="form-control" value="{{ old('video', $course->video )}}">
     </div>
     <div class="form-group col-6">
         <label for="category_id" class="required" >Categoria</label>
@@ -16,8 +16,8 @@
         </select>
     </div>
     <div class="form-group col-6">  
-        <label for="image_link" class="required">Imagem </label>
-        <input type="file" accept="image/*" class="form-control-file" name="image_link" required>
+        <label for="image_link">Imagem </label>
+        <input type="file" accept="image/*" class="form-control-file" name="image_link">
     </div>
     <div class="form-group col-sm-12 col-md-12" >
         <label for="description" class="required">Descrição: </label>   
